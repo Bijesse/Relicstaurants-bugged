@@ -29,5 +29,8 @@ export const StyledHero = styled.div`
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(${hero});
+  background-image: url('http://deelay.me/5000/https://i.ibb.co/rvN8Y6j/hero.jpg');
 `;
+
+// Note from Developer: Removed line of code below from line 32 to experiment with absolute URL load times. Revert before production
+// background-image: url(${hero});
