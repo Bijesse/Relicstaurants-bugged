@@ -17,11 +17,13 @@ const Payments = () => {
 
   //added this function
   const handleOrderValidation = async (payload) => {
-    await axios.post('http://lvh.me:3002/api/validation', { ccnum: payload });
+    await axios.post('http://localhost:3002/api/validation', {
+      ccnum: payload,
+    });
   };
 
   const handleOrderSending = async (payload) => {
-    await axios.post('http://lvh.me:3002/api/checkout', payload);
+    await axios.post('http://localhost:3002/api/checkout', payload);
   };
 
   const columns = [

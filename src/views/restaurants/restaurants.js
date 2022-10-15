@@ -24,7 +24,7 @@ const Restaurants = () => {
   const [form] = Form.useForm();
 
   const getRestaurants = async () => {
-    const { data } = await axios.get('http://lvh.me:3001/api/restaurants');
+    const { data } = await axios.get('http://localhost:3001/api/restaurants');
     return data;
   };
   const { data } = useQuery('restaurants', getRestaurants);
@@ -81,6 +81,7 @@ const Restaurants = () => {
           filteredData?.map((item) => {
             return (
               <RestaurantCard
+                key={`key-${item.id}`}
                 name={item.name}
                 id={item.id}
                 score={item.rating}
