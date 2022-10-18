@@ -13,7 +13,7 @@ import {
 } from './single-restaurant.styled';
 
 const getRestaurant = async (id) => {
-  const { data } = await axios.get(`http://lvh.me:3003/api/menu/${id}`);
+  const { data } = await axios.get(`http://localhost:3003/api/menu/${id}`);
 
   return data;
 };
@@ -60,6 +60,12 @@ const SingleRestaurant = () => {
     },
   ];
 
+  let menuItems = data?.menuItems || [];
+  menuItems.forEach((item) => {
+    item.key = item.name;
+    return item;
+  });
+
   return (
     <ViewWrapper>
       <RestaurantHead>
@@ -77,7 +83,7 @@ const SingleRestaurant = () => {
       <Divider />
       <h4>Menu</h4>
       <Table
-        dataSource={data?.menuItems}
+        dataSource={menuItems}
         columns={columns}
         style={{ width: '100%' }}
       />

@@ -2,12 +2,29 @@ var express = require('express');
 var fs = require('fs');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var newrelic = require('newrelic');
 
 var RestaurantRecord = require('./model').Restaurant;
 var MemoryStorage = require('./storage').Memory;
 
 var API_URL_VALIDATION = '/api/validation';
 var API_URL_ORDER = '/api/checkout';
+
+let apiValidationCallback = function (req, res, _next) {
+  console.log('apiValidationCallback.ccnum.length', req.body.ccnum.length);
+  
+  if (req.body.ccnum.length <= 15) {
+    let err = new Error('CC num invalid');
+    newrelic.noticeError(err);
+    return res.status(400).send(err);
+  }
+
+  return res.status(200).send();
+};
+
+let apiCheckoutCallback = function(req, res, _next) {
+  return res.status(201).send({ orderId: Date.now()});
+};
 
 exports.start = function(PORT, STATIC_DIR, DATA_FILE) {
   var app = express();
@@ -31,16 +48,9 @@ exports.start = function(PORT, STATIC_DIR, DATA_FILE) {
 
 
   // API
-  app.post(API_URL_ORDER, function(req, res, _next) {
-    return res.status(201).send({ orderId: Date.now()});
-  });
+  app.post(API_URL_ORDER, apiCheckoutCallback);
 
-  app.post(API_URL_VALIDATION, function (req, res, _next) {
-    //console.log(req.body);
-    if (req.body.ccnum.length <= 15) {
-      return res.status(401).send({ error: 'CC num invalid' });
-    }
-  });
+  app.post(API_URL_VALIDATION, apiValidationCallback);
 
   // start the server
   // read the data from json and start the server
