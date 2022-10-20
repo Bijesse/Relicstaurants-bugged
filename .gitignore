@@ -20,8 +20,6 @@ menuService/node_modules
 .env.development.local
 .env.test.local
 .env.production.local
-newrelic_agent.log
-newrelic.js
 
 npm-debug.log*
 yarn-debug.log*
