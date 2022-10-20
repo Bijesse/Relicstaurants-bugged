@@ -53,10 +53,11 @@ After completing the steps above, generate some traffic on your application and 
 ## Simulate application traffic
 This repository includes a simulator file that will make random orders on Relicstaurants so that you do not need to manually generate traffic. Run the simulator  script with the following steps:
 
-1. Install [Python3](https://www.python.org/downloads/) via the Terminal or Command Prompt
-2. Install Selenium and Webdriver via the Terminal or Command Prompt with `pip3 install webdriver-manager selenium`
-3. Navigate into the **simulator** directory
-4. run `python3 simulator.py`
+1. Open a new Terminal or Command Prompt window and navigate to the **simulator** directory
+2. Install [Python3](https://www.python.org/downloads/) via the Terminal or Command Prompt
+3. Install Selenium and Webdriver via the Terminal or Command Prompt with `pip3 install webdriver-manager selenium`
+4. Navigate into the **simulator** directory
+5. run `python3 simulator.py`
 
 *Note: If you encounter any issues while on a Windows PC, try running this script in a administrator shell.* 
 
