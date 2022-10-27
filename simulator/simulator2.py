@@ -43,7 +43,7 @@ while True:
     cvs = ''
 
     for i in range(3):
-        cvs = cvs + str(random.randint(0,9))
+        cvs = cvs + str(random.randint(1,9))
     cardCvc = browser.find_element(By.ID, "csv")
     cardCvc.send_keys(cvs)
     time.sleep(2)
