@@ -16,7 +16,7 @@ In order to spin up this application locally on your device, you will need the f
 *Note: the above verification commands should be ran in Terminal on Mac or Command Prompt on Windows*
 ## Installation
 1. From a new Terminal or Command Prompt window, clone this repository using Git `git clone https://github.com/Bijesse/Relicstaurants-bugged.git`
-2. Navigate into your new workspace using `cd Relicstaurants`
+2. Navigate into your new workspace using `cd Relicstaurants-bugged`
 3. Run `make install` if this is your first time spinning up this application
 4. Run `make run`
 
@@ -29,7 +29,7 @@ This application is comprised of 3 microservices [restaurantService](restaurantS
 1. In your New Relic account, select **add data** and locate Application monitoring for [Node.js](https://one.newrelic.com/marketplace?account=3617221&duration=1800000&state=8e76f453-269a-ac05-0db9-431a2e82ad73)
 2. Install the agent via **On a host (without PM2)**
 3. Follow the first 3 steps provided on the "Add your Node.js application data" page. Be sure to.. `cd` into the correct directory before installing the agent, add your New Relic Ingest License key to line 16 of the `newrelic.js` file.
-4. Add `var newrelic = require('newrelic');` to the first line of the `index.js`.
+4. Add `var newrelic = require('newrelic');` to the first line of the `index.js` file.
 5. Repeat the steps above for menuService and checkoutService.
 
 Make several orders in the Relicstaurants app running at localhost:3000 and check the pre-built dashboards for data being observed by New Relic.
