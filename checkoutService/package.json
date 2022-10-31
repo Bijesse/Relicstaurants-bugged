@@ -21,7 +21,6 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.17.0",
-    "@babel/preset-react": "^7.16.7",
-    "nodemon": "^2.0.19"
+    "@babel/preset-react": "^7.16.7"
   }
 }
