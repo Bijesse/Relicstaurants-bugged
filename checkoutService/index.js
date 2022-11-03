@@ -1,20 +1,21 @@
-var express = require("express");
-var fs = require("fs");
-var logger = require("morgan");
-var bodyParser = require("body-parser");
+//var newrelic = require('newrelic');
+var express = require('express');
+var fs = require('fs');
+var logger = require('morgan');
+var bodyParser = require('body-parser');
 
-var RestaurantRecord = require("./model").Restaurant;
-var MemoryStorage = require("./storage").Memory;
+var RestaurantRecord = require('./model').Restaurant;
+var MemoryStorage = require('./storage').Memory;
 
-var API_URL_VALIDATION = "/api/validation";
-var API_URL_ORDER = "/api/checkout";
+var API_URL_VALIDATION = '/api/validation';
+var API_URL_ORDER = '/api/checkout';
 
 let apiValidationCallback = function (req, res, _next) {
-  console.log("apiValidationCallback.ccnum.length", req.body.ccnum.length);
+  console.log('apiValidationCallback.ccnum.length', req.body.ccnum.length);
 
   if (req.body.ccnum.length <= 15) {
-    let err = new Error("payments.js, cardNumber is invalid");
-    newrelic.noticeError(err);
+    let err = new Error('payments.js, cardNumber is invalid');
+    // newrelic.noticeError(err);
     return res.status(400).send(err);
   }
 
@@ -30,7 +31,7 @@ exports.start = function (PORT, STATIC_DIR, DATA_FILE) {
   var storage = new MemoryStorage();
 
   // log requests
-  app.use(logger("combined"));
+  app.use(logger('combined'));
 
   // serve static files for demo client
   app.use(express.static(STATIC_DIR));
@@ -40,10 +41,10 @@ exports.start = function (PORT, STATIC_DIR, DATA_FILE) {
 
   // set header to prevent cors errors
   app.use(function (_req, res, next) {
-    res.setHeader("Access-Control-Allow-Origin", "*"),
+    res.setHeader('Access-Control-Allow-Origin', '*'),
       res.setHeader(
-        "Access-Control-Allow-Headers",
-        "newrelic, tracestate, traceparent, content-type"
+        'Access-Control-Allow-Headers',
+        'newrelic, tracestate, traceparent, content-type'
       ),
       next();
   });
@@ -61,7 +62,7 @@ exports.start = function (PORT, STATIC_DIR, DATA_FILE) {
     });
 
     app.listen(PORT, function () {
-      console.log("http://localhost:" + PORT + "/");
+      console.log('http://localhost:' + PORT + '/');
     });
   });
 
