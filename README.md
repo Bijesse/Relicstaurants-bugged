@@ -16,7 +16,7 @@ In order to spin up this application locally on your device, you will need the f
 *Note: the above verification commands should be ran in Terminal on Mac or Command Prompt on Windows*
 ## Installation
 1. From a new Terminal or Command Prompt window, clone this repository using Git `git clone https://github.com/Bijesse/Relicstaurants-bugged.git`
-2. Navigate into your new workspace using `cd Relicstaurants-bugged`
+2. Navigate into your new workspace using `cd Relicstaurants-Platzi`
 3. Run `make install` if this is your first time spinning up this application
 4. Run `make run`
 
