@@ -29,10 +29,10 @@ This application is comprised of 3 microservices: [restaurantService](restaurant
 1. In your New Relic account, select **Add Data** and search for Node.js.
 2. In the results under **Application monitoring**, click **Node.js**.
 3. On the **Choose your instrumentation method** screen, click **On a host (without PM2)**. 
-4. When asked to **Name your application**, enter a unique name such as`my-restaurant-service` and click **Save**.
-5. For **Install the New Relic agent** , navigate to your Terminal or Command Prompt window, navigate to `Relicstaurants-Platzi/restaurantService` using the command `cd restaurantService` and run the command `npm install newrelic --save`
-6. For **Download your custom configuration file**, click **Copy to clipboard** and then paste the contents into the file (`newrelic.js`) found in `Relicstaurants-Platzi/restaurantService`.
-7. Using your IDE, Add `var newrelic = require('newrelic');` to the first line of the `Relicstaurants-Platzi/restaurantService/index.js` file.
+4. When asked to **Name your application**, enter a unique name such as `my-restaurant-service` and click **Save**.
+5. For **Install the New Relic agent**, go to your Terminal or Command Prompt, navigate to `Relicstaurants-Platzi/restaurantService` using the command `cd restaurantService` and run the command `npm install newrelic --save`
+6. For **Download your custom configuration file**, click **Copy to clipboard** and then paste the contents into the file `newrelic.js` found in `Relicstaurants-Platzi/restaurantService`.
+7. Using your IDE, add `var newrelic = require('newrelic');` to the first line of the `Relicstaurants-Platzi/restaurantService/index.js`.
 8. Repeat the steps above for menuService and checkoutService.
 9. After you've configured all three services, start your application in Terminal or Command Prompt by navigating back to the root directory of the project and running `make run`
 
