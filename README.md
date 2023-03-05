@@ -24,30 +24,33 @@ After successfully completing the installation process above, your new applicati
 
 
 ## New Relic APM Instrumentation
-This application is comprised of 3 microservices [restaurantService](restaurantService/newrelic.js), [menuService](menuService/newrelic.js), [checkoutService](checkoutService/newrelic.js). In order to monitor and observe data properly, each service will need to be instrumented with the New Relic APM agent. Let's start with restaurantService:
+This application is comprised of 3 microservices: [restaurantService](restaurantService/newrelic.js), [menuService](menuService/newrelic.js), [checkoutService](checkoutService/newrelic.js). In order to monitor and observe data properly, you'll need to instrument each of these services with a separate Node.js APM agent. When you finish the steps below, you'll be running three instances of the Node.js agent. Let's start with restaurantService:
 
-1. In your New Relic account, select **add data** and locate Application monitoring for [Node.js](https://one.newrelic.com/marketplace?account=3617221&duration=1800000&state=8e76f453-269a-ac05-0db9-431a2e82ad73)
-2. Install the agent via **On a host (without PM2)**
-3. Follow the first 3 steps provided on the "Add your Node.js application data" page. Be sure to.. `cd` into the correct directory before installing the agent, add your New Relic Ingest License key to line 16 of the `newrelic.js` file.
-4. Add `var newrelic = require('newrelic');` to the first line of the `index.js` file.
-5. Repeat the steps above for menuService and checkoutService.
+1. In your New Relic account, select **Add Data** and search for Node.js.
+2. In the results under **Application monitoring**, click **Node.js**.
+3. On the **Choose your instrumentation method** screen, click **On a host (without PM2)**. 
+4. When asked to **Name your application**, enter a unique name such as`my-restaurant-service` and click **Save**.
+5. For **Install the New Relic agent** , navigate to your Terminal or Command Prompt window, navigate to `Relicstaurants-Platzi/restaurantService` using the command `cd restaurantService` and run the command `npm install newrelic --save`
+6. For **Download your custom configuration file**, click **Copy to clipboard** and then paste the contents into the file (`newrelic.js`) found in `Relicstaurants-Platzi/restaurantService`.
+7. Using your IDE, Add `var newrelic = require('newrelic');` to the first line of the `Relicstaurants-Platzi/restaurantService/index.js` file.
+8. Repeat the steps above for menuService and checkoutService.
+9. After you've configured all three services, start your application in Terminal or Command Prompt by navigating back to the root directory of the project and running `make run`
 
-Make several orders in the Relicstaurants app running at localhost:3000 and check the pre-built dashboards for data being observed by New Relic.
+Navigate to [localhost:3000](localhost:3000) in your browser. Make several orders in the Relicstaurants app and check the pre-built dashboards for data being observed by New Relic.
 
 ## New Relic Browser Instrumentation
 The next New Relic agent to be added to this application is Browser. This will allow for you to have full stack observability and make use of the distributed tracing features of New Relic.
 
-1. In your New Relic account, select **add data** and locate Browser for [React](https://one.newrelic.com/marketplace?account=3617221&duration=1800000&state=37da579a-b782-d2fb-6656-35acd0b868d0)
+1. In your New Relic account, click the **add data** button, then from the **Browser & mobile** category, select **Browser monitoring** 
 2. Select **Copy/Paste JavaScript Code**
-3. Name your app as a standalone app called "frontend"
+3. Name your app as a standalone app called "r-frontend"
 4. Click **enable**. You may ignore the HTML snippet that appears on screen for now and instead close the window. 
-5. Navigate to the Browser Applications being observed in your New Relic account. You should see the service "frontend" listed there. Click on it.
+5. Navigate to the Browser Applications being observed in your New Relic account. You should see the service "r-frontend" listed there. Click on it.
 6. Select "Application settings" view in the "Settings" section on the left *- see screenshot below*
 7. Enable "Cross Origin Resource Sharing(CORS)", "Use newrelic header", "Use trace context headers" and add the backend origins ( http://platzi.nru.to:3001 http://platzi.nru.to:3002 http://platzi.nru.to:3003 ) to enable newrelic headers to be passed between the frontend app and the microservices instrumented with APM *- see screenshot below*
-8. Click "Save application settings" *- see screenshot below*
-9. This will redirect you to the main view of the browser app in New Relic. At this point, re-enter the "Application settings" view and copy the HTML snippet available in the first section. The snippet should be then pasted after the meta tag in the public > [index.html](public/index.html) file. 
-
- ![image](readmeData/browserSettings.png)
+8. Click "Save" *- see screenshot below*
+9. Copy the HTML snippet available at the top of the Application settings menu. You will then need to paste the snippet after the meta tag in the public > [index.html](public/index.html) file. 
+ ![image](readmeData/browserSettings-new.png)
 
 After completing the steps above, generate some traffic on your application and view the data in New Relic.
 
